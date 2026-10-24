@@ -1,0 +1,5 @@
+*.bak
+*-bak
+*.lck
+fp-info-cache
+__pycache__/

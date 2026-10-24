@@ -1,0 +1,15 @@
+{
+  "prefix": "Plus381_",
+  "categories": {
+    "Connectors": "Connectors, headers, terminals, wire-to-board",
+    "Switches": "Buttons, DIP switches, toggles, relays",
+    "Discrete": "Diodes, LEDs, transistors, MOSFETs, TVS",
+    "Power": "Regulators, DC/DC converters, battery management, power ICs",
+    "MCU": "Microcontrollers and modules (ESP32, STM32, RP2040, ...)",
+    "ICs": "Other ICs: drivers, interfaces, logic, PWM controllers",
+    "Sensors": "IMUs, encoders, current/voltage/distance sensors",
+    "Passives": "Special resistors, capacitors, inductors, crystals, fuses (use KiCad stock libs for generic R/C)",
+    "Mechanical": "Mounting, heatsinks, test points, logos",
+    "Misc": "Anything that does not fit elsewhere"
+  }
+}
