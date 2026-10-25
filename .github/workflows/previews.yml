@@ -1,0 +1,129 @@
+name: Part previews
+
+# Renders symbol, footprint and 3D pictures of added/changed parts and shows
+# them as a comment on the commit (push to main) or on the pull request.
+# Pictures are stored on the "previews" branch.
+on:
+  push:
+    branches: [main]
+    paths: ["symbols/**", "footprints/**", "3dmodels/**"]
+  # pull_request_target so pull requests from forks can be commented on too.
+  # Safe here: the PR's files are only read and rendered, never executed;
+  # the scripts always come from main.
+  pull_request_target:
+    paths: ["symbols/**", "footprints/**", "3dmodels/**"]
+  # Actions tab > Part previews > Run workflow: render an older commit.
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: "Commit to render (SHA or branch)"
+        required: true
+        default: main
+
+permissions:
+  contents: write        # push pictures to the previews branch
+  pull-requests: write   # comment on pull requests
+
+concurrency:
+  group: previews-${{ github.event.pull_request.number || github.sha }}
+
+jobs:
+  previews:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Scripts (from main)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          path: tools
+          sparse-checkout: scripts
+
+      - name: Parts to render (data only)
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          ref: ${{ github.event.pull_request.head.sha || inputs.commit || github.sha }}
+          path: parts
+          lfs: true
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install KiCad 10 and rsvg-convert
+        run: |
+          sudo add-apt-repository -y ppa:kicad/kicad-10.0-releases
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends kicad librsvg2-bin
+
+      - name: Render
+        id: render
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          BEFORE: ${{ github.event.before }}
+          REPO: ${{ github.repository }}
+        run: |
+          head=$(git -C parts rev-parse HEAD)
+          if [ -n "$PR_NUMBER" ]; then
+            git -C parts fetch --quiet "https://github.com/$REPO" "$PR_BASE"
+            base=$(git -C parts merge-base "$PR_BASE" "$head")
+            dir="pr-$PR_NUMBER-${head:0:12}"
+          elif [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            base="$head~1"
+            dir="${head:0:12}"
+          else
+            base="$BEFORE"
+            if [ -z "$base" ] || ! git -C parts cat-file -e "$base" 2>/dev/null; then base="$head~1"; fi
+            dir="${head:0:12}"
+          fi
+          python3 tools/scripts/render_previews.py --repo parts --base "$base" --head "$head" \
+            --out "out/$dir" --url-prefix "https://raw.githubusercontent.com/$REPO/previews/$dir/"
+          echo "dir=$dir" >> "$GITHUB_OUTPUT"
+          echo "sha=$head" >> "$GITHUB_OUTPUT"
+          if [ -s "out/$dir/comment.md" ]; then echo "found=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Store pictures on the previews branch
+        if: steps.render.outputs.found == 'true'
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          DIR: ${{ steps.render.outputs.dir }}
+        run: |
+          url="https://x-access-token:$TOKEN@github.com/$REPO.git"
+          if git clone --quiet --depth 1 --branch previews "$url" pv 2>/dev/null; then :; else
+            git init --quiet pv && git -C pv checkout --quiet --orphan previews
+            git -C pv remote add origin "$url"
+            printf 'Pictures rendered by the "Part previews" workflow. Not a library branch.\n' > pv/README.md
+          fi
+          mkdir -p "pv/$DIR" && cp out/"$DIR"/*.png "pv/$DIR/"
+          cd pv
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit --quiet -m "Previews for $DIR"
+          for i in 1 2 3; do
+            git push --quiet origin HEAD:previews && break
+            git pull --quiet --rebase origin previews || true
+          done
+
+      - name: Comment
+        if: steps.render.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          DIR: ${{ steps.render.outputs.dir }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          SHA: ${{ steps.render.outputs.sha }}
+        run: |
+          marker="<!-- plus381-part-previews -->"
+          { echo "$marker"; echo "## Part previews"; echo; cat "out/$DIR/comment.md"; } > body.md
+          if [ -n "$PR_NUMBER" ]; then
+            id=$(gh api "repos/$REPO/issues/$PR_NUMBER/comments" --paginate \
+                 --jq ".[] | select(.body | startswith(\"$marker\")) | .id" | head -n1)
+            if [ -n "$id" ]; then
+              gh api -X PATCH "repos/$REPO/issues/comments/$id" -F body=@body.md > /dev/null
+            else
+              gh api "repos/$REPO/issues/$PR_NUMBER/comments" -F body=@body.md > /dev/null
+            fi
+          else
+            gh api "repos/$REPO/commits/$SHA/comments" -F body=@body.md > /dev/null
+          fi
+          cat body.md >> "$GITHUB_STEP_SUMMARY"

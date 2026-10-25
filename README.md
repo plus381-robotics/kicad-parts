@@ -44,4 +44,13 @@ python3 scripts/check_library.py            # quick
 python3 scripts/check_library.py --kicad    # also loads every library in kicad-cli
 ```
 
-The *Library check* workflow runs the full check on every push.
+The *Library check* workflow runs the full check on every push. Missing 3D
+models only show as warnings.
+
+## Part previews
+
+When parts are added or changed, the *Part previews* workflow renders the
+symbol, footprint and 3D view and posts them as a comment: on the commit for
+pushes to `main`, and on the pull request for pull requests (updated on every
+push). The pictures are kept on the `previews` branch. To render an older
+commit, use **Actions → Part previews → Run workflow** and enter its SHA.
