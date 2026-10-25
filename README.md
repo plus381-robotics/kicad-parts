@@ -53,4 +53,4 @@ When parts are added or changed, the *Part previews* workflow renders the
 symbol, footprint and 3D view and posts them as a comment: on the commit for
 pushes to `main`, and on the pull request for pull requests (updated on every
 push). The pictures are kept on the `previews` branch. To render an older
-commit, use **Actions → Part previews → Run workflow** and enter its SHA.
+commit, use **Actions → Part previews → Run workflow** and enter its full commit SHA.

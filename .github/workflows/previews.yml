@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       commit:
-        description: "Commit to render (SHA or branch)"
+        description: "Commit to render (full 40-character SHA, or a branch name)"
         required: true
         default: main
 
