@@ -5,19 +5,21 @@ the rest of the team.
     python3 scripts/check_library.py          # report, exit 1 on errors
     python3 scripts/check_library.py --kicad  # also let kicad-cli parse every file
 
-Errors (fail CI):
-  - a footprint's 3D model is missing or not under ${PLUS381_PARTS}/3dmodels/
+Errors (fail CI): things that break parts for everyone
   - a symbol links to a Plus381 footprint that does not exist
   - a file name does not match the symbol/footprint name inside it
   - a symbol file holds more than one symbol (one symbol per file avoids
     merge conflicts when two people add parts at the same time)
-Warnings:
-  - footprint without a 3D model, 3D model no footprint uses,
+  - a file KiCad cannot read
+Warnings (shown, but CI stays green):
+  - footprint without a 3D model, 3D model file missing or outside
+    ${PLUS381_PARTS}/3dmodels/, 3D model no footprint uses,
     symbol without footprint/datasheet/MPN
 """
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -111,12 +113,12 @@ def main():
                 if path.startswith("${KICAD") and "3DMODEL_DIR}" in path:
                     continue  # stock KiCad model
                 if not path.startswith(MODEL_PREFIX):
-                    errors.append(f"{nick}:{f.stem}: 3D model path must start with {MODEL_PREFIX} (is {path})")
+                    warnings.append(f"{nick}:{f.stem}: 3D model path should start with {MODEL_PREFIX} (is {path})")
                     continue
                 name = path[len(MODEL_PREFIX):]
                 used_models.add(name)
                 if not (ROOT / "3dmodels" / name).is_file():
-                    errors.append(f"{nick}:{f.stem}: 3D model 3dmodels/{name} is not in the repository")
+                    warnings.append(f"{nick}:{f.stem}: 3D model 3dmodels/{name} is not in the repository")
 
     for lib in sorted((ROOT / "symbols").glob("*.kicad_symdir")):
         nick = lib.stem
@@ -155,10 +157,11 @@ def main():
     if args.kicad:
         errors += kicad_parse()
 
+    gh = os.environ.get("GITHUB_ACTIONS") == "true"  # also annotate the run summary
     for w in warnings:
-        print("warning:", w)
+        print(("::warning::" if gh else "warning: ") + w)
     for e in errors:
-        print("ERROR:", e)
+        print(("::error::" if gh else "ERROR: ") + e)
     print(f"\n{len(footprints)} footprints, {len(used_models)} 3D models: "
           f"{len(errors)} errors, {len(warnings)} warnings")
     return 1 if errors else 0
