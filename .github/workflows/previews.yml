@@ -2,7 +2,9 @@ name: Part previews
 
 # Renders symbol, footprint and 3D pictures of added/changed parts and shows
 # them as a comment on the commit (push to main) or on the pull request.
-# Pictures are stored on the "previews" branch.
+# Pictures are stored on the "previews" branch. When the repository secret
+# DISCORD_WEBHOOK_URL is set, the pictures are also posted to that Discord
+# channel (pushes to main, and pull requests when they are opened).
 on:
   push:
     branches: [main]
@@ -52,7 +54,7 @@ jobs:
         run: |
           sudo add-apt-repository -y ppa:kicad/kicad-10.0-releases
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends kicad librsvg2-bin
+          sudo apt-get install -y --no-install-recommends kicad librsvg2-bin python3-pil
 
       - name: Render
         id: render
@@ -127,3 +129,31 @@ jobs:
             gh api "repos/$REPO/commits/$SHA/comments" -F body=@body.md > /dev/null
           fi
           cat body.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Post to Discord
+        if: >-
+          steps.render.outputs.found == 'true' &&
+          (github.event_name != 'pull_request_target' ||
+           github.event.action == 'opened' || github.event.action == 'reopened')
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DIR: ${{ steps.render.outputs.dir }}
+          SHA: ${{ steps.render.outputs.sha }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          COMMIT_AUTHOR: ${{ github.event.head_commit.author.name }}
+        run: |
+          if [ -n "$PR_NUMBER" ]; then
+            link="$PR_URL"; author="$PR_AUTHOR"; message="$PR_TITLE"
+            headline="Parts proposed in pull request #$PR_NUMBER: please review"
+          else
+            link="https://github.com/$REPO/commit/$SHA"
+            author="${COMMIT_AUTHOR:-$GITHUB_ACTOR}"; message="$COMMIT_MESSAGE"
+            headline="New in the Plus381 parts library"
+          fi
+          python3 tools/scripts/notify_discord.py --out "out/$DIR" --link "$link" \
+            --headline "$headline" --author "$author" --message "$message"

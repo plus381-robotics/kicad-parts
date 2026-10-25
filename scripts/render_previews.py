@@ -135,6 +135,35 @@ def render_3d(repo, lib, name, out, cfg_home):
                "--rotate", "-45,0,45", "--zoom", "0.8", "--background", "opaque", "--quality", "high", env=env)
 
 
+def make_card(out, i):
+    """Symbol | footprint | 3D side by side in one picture (for chat apps
+    that show one image per message). Needs Pillow; skipped without it."""
+    try:
+        from PIL import Image, ImageDraw
+    except ImportError:
+        return None
+    tiles = []
+    for kind in ("symbol", "footprint", "3d"):
+        f = out / f"{i}-{kind}.png"
+        tiles.append((kind, Image.open(f).convert("RGB").resize((SIZE, SIZE)) if f.exists() else None))
+    if not any(t for _, t in tiles):
+        return None
+    pad, label = 12, 22
+    card = Image.new("RGB", (3 * SIZE + 4 * pad, SIZE + 2 * pad + label), "white")
+    draw = ImageDraw.Draw(card)
+    for n, (kind, tile) in enumerate(tiles):
+        x = pad + n * (SIZE + pad)
+        draw.text((x, pad // 2), {"symbol": "Symbol", "footprint": "Footprint", "3d": "3D"}[kind], fill=(90, 90, 90))
+        if tile:
+            card.paste(tile, (x, pad + label))
+        else:
+            draw.rectangle([x, pad + label, x + SIZE, pad + label + SIZE], outline=(200, 200, 200))
+            draw.text((x + SIZE // 2 - 30, pad + label + SIZE // 2), "not available", fill=(150, 150, 150))
+    path = out / f"{i}-card.png"
+    card.save(path)
+    return path
+
+
 def render_config(base):
     """Private KiCad settings that show every kind of 3D model."""
     d = Path(base) / "10.0"
@@ -191,6 +220,7 @@ def main():
 
     words = {"A": "new", "M": "changed", "D": "deleted"}
     md = []
+    summary = []
     for i, row in enumerate(rows):
         print("rendering", row["title"])
         cells = []
@@ -218,7 +248,11 @@ def main():
         if details:
             md.append(" · ".join(details))
         md.append("\n| Symbol | Footprint | 3D |\n|:-:|:-:|:-:|\n| " + " | ".join(cells) + " |\n")
+        card = make_card(out, i)
+        summary.append({"title": row["title"], "status": words.get(row["status"], "changed"),
+                        "fields": row["fields"], "card": card.name if card else None})
     (out / "comment.md").write_text("\n".join(md) if md else "", encoding="utf-8")
+    (out / "parts.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(f"{len(rows)} part(s) rendered")
 
 

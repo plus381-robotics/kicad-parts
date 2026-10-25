@@ -54,3 +54,17 @@ symbol, footprint and 3D view and posts them as a comment: on the commit for
 pushes to `main`, and on the pull request for pull requests (updated on every
 push). The pictures are kept on the `previews` branch. To render an older
 commit, use **Actions → Part previews → Run workflow** and enter its full commit SHA.
+
+### Discord
+
+The same pictures (symbol | footprint | 3D in one card, plus MPN, footprint
+and datasheet) can be posted to a Discord channel: on every push to `main`,
+and when a pull request is opened.
+
+1. Discord: channel settings (gear) → **Integrations → Webhooks → New
+   Webhook**, pick the channel, **Copy Webhook URL**.
+2. GitHub: this repo → **Settings → Secrets and variables → Actions → New
+   repository secret**, name `DISCORD_WEBHOOK_URL`, paste the URL.
+
+Without the secret, nothing is sent. Anyone who has the webhook URL can
+post to that channel, so keep it only in the secret.
