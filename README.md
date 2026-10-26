@@ -14,7 +14,7 @@ libraries in KiCad, imports vendor parts, and publishes your changes.
 symbols/Plus381_<Category>.kicad_symdir/<Part>.kicad_sym   one symbol per file
 footprints/Plus381_<Category>.pretty/<Footprint>.kicad_mod  one footprint per file
 3dmodels/<model>.step                                      every 3D model, stored once (Git LFS)
-categories.json                                            the list of categories
+categories.json                                            the list of categories (and the library name prefix)
 scripts/check_library.py                                   checks run by CI and the plugin
 ```
 
@@ -25,6 +25,17 @@ scripts/check_library.py                                   checks run by CI and 
   this repo is on your computer.
 * One file per symbol and per footprint means two people adding parts at the
   same time never conflict.
+
+Every category has its folders even while it's empty (they hold a `.gitkeep`,
+because Git can't store empty folders), so all categories are set up in KiCad
+from the start. To add a category, add it to `categories.json` and run
+`python3 scripts/check_library.py --fix` to create its folders, then commit.
+
+## Using it for your own team
+
+Copy this repository (fork it, or use *Use this template*), change `prefix`
+and the categories in `categories.json` if you like, and enter your
+repository's address in the plugin's Setup window (**Library repository**).
 
 ## Rules
 

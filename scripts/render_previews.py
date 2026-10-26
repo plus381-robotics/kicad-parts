@@ -109,6 +109,69 @@ def bbox(text):
     return (min(xs), min(ys), max(xs), max(ys)) if xs else (-2.5, -2.5, 2.5, 2.5)
 
 
+def model_box(path):
+    """Bounding box ((x0, y0, z0), (x1, y1, z1)) in mm of a STEP/VRML model,
+    from its vertices (same as the plugin's preview). None if unreadable."""
+    try:
+        raw = Path(path).read_bytes()
+        if raw[:2] == b"\x1f\x8b":
+            import gzip
+            raw = gzip.decompress(raw)
+        text = raw.decode("latin-1")
+    except (OSError, EOFError):
+        return None
+    num = r"([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)"
+    if "#VRML" in text[:20]:
+        scale = 2.54
+        pts = re.findall(num + r"\s+" + num + r"\s+" + num, " ".join(re.findall(r"point\s*\[([^\]]*)\]", text)))
+    else:
+        if re.search(r"CONVERSION_BASED_UNIT\s*\(\s*'INCH'", text, re.I):
+            scale = 25.4
+        elif re.search(r"SI_UNIT\s*\(\s*\$\s*,\s*\.METRE\.", text, re.I):
+            scale = 1000.0
+        else:
+            scale = 1.0
+        points = dict((m.group(1), m.groups()[1:]) for m in re.finditer(
+            r"#(\d+)\s*=\s*CARTESIAN_POINT\s*\(\s*'[^']*'\s*,\s*\(\s*" + num + r"\s*,\s*" + num + r"\s*,\s*" + num,
+            text))
+        pts = [points[v] for v in re.findall(r"VERTEX_POINT\s*\(\s*'[^']*'\s*,\s*#(\d+)", text) if v in points]
+        pts = pts or list(points.values())
+    if not pts:
+        return None
+    xs, ys, zs = ([float(p[i]) * scale for p in pts] for i in range(3))
+    return (min(xs), min(ys), min(zs)), (max(xs), max(ys), max(zs))
+
+
+def model_reach(text, path, offset, rotation):
+    """(x0, y0, x1, y1, z0, z1) of the placed model in board mm; see the
+    plugin's importer.model_reach for the reasoning."""
+    import math
+    box = model_box(path)
+    if not box:
+        return None
+    rx, ry, rz = (math.radians(-v) for v in rotation)
+    out = []
+    for x in (box[0][0], box[1][0]):
+        for y in (box[0][1], box[1][1]):
+            for z in (box[0][2], box[1][2]):
+                y, z = y * math.cos(rx) - z * math.sin(rx), y * math.sin(rx) + z * math.cos(rx)
+                x, z = x * math.cos(ry) + z * math.sin(ry), -x * math.sin(ry) + z * math.cos(ry)
+                x, y = x * math.cos(rz) - y * math.sin(rz), x * math.sin(rz) + y * math.cos(rz)
+                out.append((x + offset[0], -(y + offset[1]), z + offset[2]))
+    xs, ys, zs = zip(*out)
+    fx0, fy0, fx1, fy1 = bbox(text)
+    fw, fh, pw, ph = fx1 - fx0 + 2, fy1 - fy0 + 2, max(xs) - min(xs), max(ys) - min(ys)
+    if 0.4 * fw <= pw <= 2.5 * fw and 0.4 * fh <= ph <= 2.5 * fh:
+        return min(xs), min(ys), max(xs), max(ys), min(zs), max(zs)
+    d = max(b - a for a, b in zip(*box))
+    return offset[0] - d / 2, -offset[1] - d / 2, offset[0] + d / 2, -offset[1] + d / 2, -d / 4, d
+
+
+def xyz(block, key):
+    m = re.search(r'\(' + key + r'\s*\(xyz\s+([-\d.eE+]+)\s+([-\d.eE+]+)\s+([-\d.eE+]+)\s*\)', block)
+    return [float(v) for v in m.groups()] if m else [0.0, 0.0, 0.0]
+
+
 def render_3d(repo, lib, name, out, cfg_home):
     """Same idea as the plugin's preview: a tiny board holding only the part."""
     text = (Path(repo) / "footprints" / f"{lib}.pretty" / f"{name}.kicad_mod").read_text(encoding="utf-8")
@@ -118,6 +181,18 @@ def render_3d(repo, lib, name, out, cfg_home):
     text = re.sub(r'(\(property\s+"(?:Reference|Value)"\s+"(?:[^"\\]|\\.)*")', r'\1 (hide yes)', text)
     body = text[text.index("\n") + 1:text.rfind(")")]
     x0, y0, x1, y1 = bbox(text)
+    # Make the board big enough for the whole 3D model (kicad-cli zooms to
+    # fit the board), including tall parts seen from the side.
+    m = re.search(r'\(model\s+"((?:[^"\\]|\\.)*)"', text)
+    reach = None
+    if m:
+        block = text[m.start():block_end(text, m.start())]
+        reach = model_reach(text, m.group(1), xyz(block, "offset"), xyz(block, "rotate"))
+    if reach:
+        x0, y0, x1, y1 = min(x0, reach[0]), min(y0, reach[1]), max(x1, reach[2]), max(y1, reach[3])
+        need = 1.5 * max(reach[5], -reach[4])
+        gx, gy = max(0.0, need - (x1 - x0)) / 2, max(0.0, need - (y1 - y0)) / 2
+        x0, x1, y0, y1 = x0 - gx, x1 + gx, y0 - gy, y1 + gy
     margin = max(1.0, 0.15 * max(x1 - x0, y1 - y0))
     board = Path(tempfile.mkdtemp()) / "p.kicad_pcb"
     board.write_text(

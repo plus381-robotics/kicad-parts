@@ -86,10 +86,26 @@ def prop(block, name):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--kicad", action="store_true", help="also parse every library with kicad-cli")
+    ap.add_argument("--fix", action="store_true",
+                    help="create missing category folders (with a .gitkeep so Git keeps them while empty)")
     args = ap.parse_args()
 
-    prefix = json.loads((ROOT / "categories.json").read_text())["prefix"]
+    data = json.loads((ROOT / "categories.json").read_text())
+    prefix = data["prefix"]
     errors, warnings = [], []
+
+    # Every category has its symbol and footprint folder from the start, so
+    # it is registered in KiCad at Setup (no restart when its first part
+    # arrives). Git can't store empty folders, hence the .gitkeep files.
+    for cat in data["categories"]:
+        for folder in (ROOT / "symbols" / f"{prefix}{cat}.kicad_symdir", ROOT / "footprints" / f"{prefix}{cat}.pretty"):
+            if args.fix:
+                folder.mkdir(parents=True, exist_ok=True)
+                if not any(folder.iterdir()):
+                    (folder / ".gitkeep").touch()
+            if not folder.is_dir():
+                errors.append(f"category {cat}: folder {folder.relative_to(ROOT)} is missing "
+                              "(run: python3 scripts/check_library.py --fix)")
     footprints = set()
     used_models = set()
 

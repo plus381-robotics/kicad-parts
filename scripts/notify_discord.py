@@ -13,6 +13,7 @@ import argparse
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.request
 import uuid
@@ -36,14 +37,24 @@ def multipart(payload, files):
 
 def send(url, payload, files):
     body, ctype = multipart(payload, files)
-    req = urllib.request.Request(url, data=body, method="POST",
-                                 headers={"Content-Type": ctype, "User-Agent": "plus381-part-previews"})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            return r.status
-    except urllib.error.HTTPError as e:
-        print("Discord refused the message:", e.code, e.read().decode(errors="replace")[:500])
-        return e.code
+    for _ in range(5):
+        req = urllib.request.Request(url, data=body, method="POST",
+                                     headers={"Content-Type": ctype, "User-Agent": "plus381-part-previews"})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return r.status
+        except urllib.error.HTTPError as e:
+            text = e.read().decode(errors="replace")
+            if e.code == 429:  # rate limited: Discord says how long to wait
+                try:
+                    wait = float(json.loads(text).get("retry_after", 2))
+                except ValueError:
+                    wait = 2.0
+                time.sleep(min(wait, 30) + 0.5)
+                continue
+            print("Discord refused the message:", e.code, text[:500])
+            return e.code
+    return 429
 
 
 def main():
@@ -63,8 +74,9 @@ def main():
     if not parts:
         return 0
 
-    embeds, files = [], []
-    for part in parts:
+    # One message per part, so every picture shows in full in the chat.
+    status = 0
+    for n, part in enumerate(parts):
         e = {"title": part["title"], "url": args.link, "color": COLORS.get(part["status"], 0x8B949E),
              "description": part["status"].capitalize() + (f" by **{args.author}**" if args.author else ""),
              "fields": [{"name": k, "value": part["fields"][k][:1000], "inline": True}
@@ -72,24 +84,21 @@ def main():
         ds = part["fields"].get("Datasheet", "")
         if ds.startswith("http"):
             e["fields"].append({"name": "Datasheet", "value": f"[open]({ds})", "inline": True})
+        files = []
         if part.get("card") and (out / part["card"]).exists():
             files.append(out / part["card"])
             e["image"] = {"url": f"attachment://{part['card']}"}
-        if args.message:
-            e["footer"] = {"text": args.message.splitlines()[0][:200]}
-        embeds.append(e)
-
-    status = 0
-    # Discord allows 10 embeds and 10 files per message.
-    for start in range(0, len(embeds), 10):
-        chunk = embeds[start:start + 10]
-        chunk_files = [f for f in files if any(e.get("image", {}).get("url") == f"attachment://{f.name}"
-                                               for e in chunk)]
-        payload = {"username": "Plus381 parts", "content": args.headline if start == 0 else "",
-                   "embeds": chunk, "allowed_mentions": {"parse": []}}
-        code = send(url, payload, chunk_files)
-        print("Discord:", code)
+        footer = args.message.splitlines()[0][:150] if args.message else ""
+        if len(parts) > 1:
+            footer = f"Part {n + 1} of {len(parts)}" + (f" · {footer}" if footer else "")
+        if footer:
+            e["footer"] = {"text": footer}
+        payload = {"username": "Plus381 parts", "content": args.headline if n == 0 else "",
+                   "embeds": [e], "allowed_mentions": {"parse": []}}
+        code = send(url, payload, files)
+        print(f"Discord ({part['title']}):", code)
         status = status or (0 if code in (200, 204) else 1)
+        time.sleep(0.6)  # stay under Discord's 5 messages / 2 s per webhook
     return status
 
 
