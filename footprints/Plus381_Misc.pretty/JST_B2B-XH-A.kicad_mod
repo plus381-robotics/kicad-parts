@@ -4,9 +4,9 @@
 	(generator_version "10.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
-		(at 0 -1.5 0)
+		(at -0.775 -4.76 0)
 		(layer "F.SilkS")
-		(uuid "f15e30cb-f8f9-4517-9b44-a8c885b46564")
+		(uuid "e8082e36-2090-4cc9-b641-5cc0843516be")
 		(effects
 			(font
 				(size 1 1)
@@ -17,8 +17,7 @@
 	(property "Value" "JST_B2B-XH-A"
 		(at 3.67 4.76 0)
 		(layer "F.Fab")
-		(hide yes)
-		(uuid "5c570649-ed14-4091-8a23-4bd259ef40a5")
+		(uuid "fae387c8-4a3b-411a-9504-2b4e9b18e1e8")
 		(effects
 			(font
 				(size 1 1)
@@ -30,7 +29,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "1b7a37c8-5de7-4ec4-a3eb-699d542c19d8")
+		(uuid "2b1757ed-bdc0-4266-a02c-835f83776f75")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -41,7 +40,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "d980f94a-57cb-49ca-a7e1-8ad1b07685ff")
+		(uuid "526e6fca-f026-4432-9b4c-f6d518ef5c78")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -58,7 +57,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "afdc9e03-e8d0-46dc-b3c2-27627bf18979")
+		(uuid "f1386cac-2035-40de-9591-34aa55475daa")
 	)
 	(fp_line
 		(start -3.7 2.875)
@@ -68,7 +67,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "dd5685da-cfe2-4694-b7f0-e1c27ad332c6")
+		(uuid "05619470-2f9a-4fe4-975b-8bfb8fa10d24")
 	)
 	(fp_line
 		(start 3.7 -2.875)
@@ -78,7 +77,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "d2d8d381-0193-45fd-9e0c-01069f607573")
+		(uuid "e09cf554-6dfe-4057-a1ba-cec3c4766e07")
 	)
 	(fp_line
 		(start 3.7 2.875)
@@ -88,7 +87,18 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "ec600759-77b0-4a03-8649-8ab8922228f2")
+		(uuid "9f98fd70-174e-4b7c-8c96-1ddb01472a08")
+	)
+	(fp_circle
+		(center 4.44 0.525)
+		(end 4.54 0.525)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "0533468e-c20a-4648-8980-79c8b0fc8acb")
 	)
 	(fp_line
 		(start -3.95 -3.125)
@@ -98,7 +108,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
-		(uuid "eba9946e-b8ab-4f6d-a2bb-a30bc7e52630")
+		(uuid "67acfbb8-9342-4fee-b950-cb81d11b59ab")
 	)
 	(fp_line
 		(start -3.95 3.125)
@@ -108,7 +118,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
-		(uuid "d41ff131-2874-485c-aa4b-36d20c5ffaa5")
+		(uuid "f020e0ed-9cc1-4546-a27f-e7c468662e7c")
 	)
 	(fp_line
 		(start 3.95 -3.125)
@@ -118,7 +128,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
-		(uuid "206f9308-c0a2-4e02-a367-67735643276d")
+		(uuid "2b0bb2eb-af42-4b9e-87e6-0c6db0dded6b")
 	)
 	(fp_line
 		(start 3.95 3.125)
@@ -128,7 +138,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
-		(uuid "764e855c-5491-436c-b826-7d9f7b3c08fa")
+		(uuid "fe4a5bfa-4f77-46fc-8319-46bcaad28225")
 	)
 	(fp_line
 		(start -3.7 -2.875)
@@ -138,7 +148,7 @@
 			(type solid)
 		)
 		(layer "F.Fab")
-		(uuid "f399573e-d5bf-46a0-a32c-ab3fcb9e1f65")
+		(uuid "9d8015f0-5159-46b0-96fa-b39ba71f83b6")
 	)
 	(fp_line
 		(start -3.7 2.875)
@@ -148,7 +158,7 @@
 			(type solid)
 		)
 		(layer "F.Fab")
-		(uuid "6ec942bd-27d5-4e42-9e8a-1add1f0b3c14")
+		(uuid "48b4aa10-049e-40f5-a6b9-7a5a5db953a8")
 	)
 	(fp_line
 		(start 3.7 -2.875)
@@ -158,7 +168,7 @@
 			(type solid)
 		)
 		(layer "F.Fab")
-		(uuid "fdf18e22-91de-4c0c-8f42-f41e6ca1a870")
+		(uuid "d09c7cec-6721-43f9-ad5c-fd3268963f00")
 	)
 	(fp_line
 		(start 3.7 2.875)
@@ -168,7 +178,18 @@
 			(type solid)
 		)
 		(layer "F.Fab")
-		(uuid "381c6d7e-5e5b-4d92-9021-f0b762e4ee43")
+		(uuid "63b6b561-7b82-4ddb-963c-4a9b82278719")
+	)
+	(fp_circle
+		(center 4.44 0.525)
+		(end 4.54 0.525)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "bad3a6fe-cc5e-4cdc-9c4a-6ccb2f6fba77")
 	)
 	(pad "1" thru_hole rect
 		(at 1.25 0.525)
@@ -177,7 +198,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "c384b71a-ba18-41e9-acf4-af3945470af9")
+		(uuid "5835d750-8983-4d98-bfe5-11bb44182d2f")
 	)
 	(pad "2" thru_hole circle
 		(at -1.25 0.525)
@@ -186,10 +207,10 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "525afe70-a6a7-459b-bf8d-d8bfede794ec")
+		(uuid "2fea1488-9a2a-495f-b69c-b41e7f0df679")
 	)
 	(embedded_fonts no)
-	(model "${PLUS381_PARTS}/3dmodels/B2B-XH-A.step"
+	(model "${PLUS381_PARTS}/3dmodels/B2B-XH-A--3DModel-STEP-56544.step"
 		(offset
 			(xyz 0 0 0)
 		)
@@ -197,7 +218,7 @@
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz -90 -0 -0)
+			(xyz -90 0 0)
 		)
 	)
 )

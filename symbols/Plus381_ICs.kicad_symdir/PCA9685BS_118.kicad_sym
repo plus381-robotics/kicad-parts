@@ -511,6 +511,28 @@
 				(justify bottom)
 			)
 		)
+		(property "MPN" "PCA9685BS_118"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "NXP"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(symbol "PCA9685BS_118_0_0"
 			(rectangle
 				(start -12.7 -27.94)

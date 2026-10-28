@@ -4,10 +4,9 @@
 	(generator_version "10.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
-		(at -4.365 -6.889 180)
+		(at -4.365 -6.889 0)
 		(layer "F.SilkS")
-		(hide yes)
-		(uuid "11f2c99a-2f9d-453f-b067-3f46057cc523")
+		(uuid "e6aeec17-f301-47a8-a2d8-f644a791a819")
 		(effects
 			(font
 				(size 1.4 1.4)
@@ -16,10 +15,9 @@
 		)
 	)
 	(property "Value" "SW_DS01C-254-S-06BE"
-		(at 8.081 7.111 180)
+		(at 8.081 7.111 0)
 		(layer "F.Fab")
-		(hide yes)
-		(uuid "a80e4494-0d59-4295-931d-58e41cfc7984")
+		(uuid "a09bdde8-595b-4178-8076-0bc86bee028e")
 		(effects
 			(font
 				(size 1.4 1.4)
@@ -28,159 +26,27 @@
 		)
 	)
 	(property "Datasheet" ""
-		(at 0 0 180)
+		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "e3fa6df0-03cc-4615-a84f-9a9c7770c93e")
+		(uuid "8bba44fe-3fcd-489b-9ab0-7ae6b0d4f465")
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 		)
 	)
-	(property "Description" "6 Position, Through Hole, 2.54 mm Pitch, Raised Slide Actuator, Convex Bottom, Short Pin, DIP Switch"
-		(at 0 0 180)
+	(property "Description" ""
+		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "5a4d2546-b1ce-4553-b3e4-f43665230793")
+		(uuid "a44b6777-e641-4d6d-9d44-1716f49ca359")
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 		)
 	)
-	(property "DigiKey_Part_Number" "2223-DS01C-254-S-06BE-ND"
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "f422d88d-a906-4ca5-b06f-5fafde482645")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "SnapEDA_Link" "https://www.snapeda.com/parts/DS01C-254-S-06BE/Same+Sky/view-part/?ref=snap"
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "1ef19f35-518a-4f7e-a1bd-2f22b58ddda5")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "MAXIMUM_PACKAGE_HEIGHT" "7.0mm"
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "b8c36fa7-b1a7-4b0a-a4af-d46bc7239c67")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Package" "None"
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "6c604b51-0cc9-42ea-a4bf-e39f6387165a")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Check_prices" "https://www.snapeda.com/parts/DS01C-254-S-06BE/Same+Sky/view-part/?ref=eda"
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "b30b85e3-8425-42e8-b67d-a21b6acbfe46")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "STANDARD" "Manufacturer recommendations"
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "cba1f64b-7633-4e80-bcbe-b4805a7e96f7")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "PARTREV" "1.0"
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "837cdaef-0356-4bd7-9017-15a08a2e5fb8")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "MF" "Same Sky"
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "0c74944a-e299-423c-9f3e-7d298e41473e")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "MP" "DS01C-254-S-06BE"
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "47a48375-6f5d-4e14-93b0-9b950d11377c")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "MANUFACTURER" "CUI"
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "9eeb5a07-251a-4c5d-a3d7-3b8d0d8bef88")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(sheetname "/")
-	(sheetfile "Aktuatorska moderna.kicad_sch")
 	(attr through_hole)
 	(duplicate_pad_numbers_are_jumpers no)
 	(fp_line
@@ -191,7 +57,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "084ea56c-672f-42fe-aa5a-e7ce9ccc4b64")
+		(uuid "e8cdc91f-62c8-4528-9d20-a670c6343159")
 	)
 	(fp_line
 		(start -8.33 4.95)
@@ -201,7 +67,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "45f10689-c447-405e-b757-26e232e02619")
+		(uuid "1cada23b-6998-4038-a928-450fd8d66e25")
 	)
 	(fp_line
 		(start 8.33 -4.95)
@@ -211,7 +77,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "bfdaed44-48b2-4342-9355-1ed1f79ae548")
+		(uuid "c7506e47-53c1-4b89-9e30-df026ce875ee")
 	)
 	(fp_line
 		(start 8.33 4.95)
@@ -221,18 +87,18 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "a16ea56b-79b9-40f5-8d74-a03e7cb90c2c")
+		(uuid "e8619894-32d2-47c2-aef2-19ca8fdf1118")
 	)
 	(fp_circle
-		(center -6.5 2)
-		(end -6.4 2)
+		(center -6.4 5.7)
+		(end -6.3 5.7)
 		(stroke
 			(width 0.2)
 			(type solid)
 		)
 		(fill no)
 		(layer "F.SilkS")
-		(uuid "91faede1-b0b8-4efc-a27d-f7d674890cc5")
+		(uuid "0701a027-ad0f-45dd-980e-a165add29ccc")
 	)
 	(fp_line
 		(start -8.58 -5.2)
@@ -242,7 +108,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
-		(uuid "bbbd4d5c-d485-4cab-85f1-e0e5f4239171")
+		(uuid "cd0b85e7-c2fb-498c-aed2-b33844c677ea")
 	)
 	(fp_line
 		(start -8.58 5.2)
@@ -252,7 +118,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
-		(uuid "bfed5252-f6c9-47e5-909e-c43d0428a25b")
+		(uuid "11220e05-dfda-42b0-9e41-e1112b3117fd")
 	)
 	(fp_line
 		(start 8.58 -5.2)
@@ -262,7 +128,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
-		(uuid "587dcb6f-c9b1-4767-a3e8-49ba08eed816")
+		(uuid "d4c291b6-798c-4986-ad11-f224c237ea19")
 	)
 	(fp_line
 		(start 8.58 5.2)
@@ -272,7 +138,7 @@
 			(type solid)
 		)
 		(layer "F.CrtYd")
-		(uuid "058e6ab5-b3e4-4365-8d29-2bd7a0e83b24")
+		(uuid "e3ad8550-c328-4098-a199-68ac1c0237c5")
 	)
 	(fp_line
 		(start -8.33 -4.95)
@@ -282,7 +148,7 @@
 			(type solid)
 		)
 		(layer "F.Fab")
-		(uuid "a8a5204d-a883-46c2-8c4e-3226098b0bef")
+		(uuid "6f3b2868-7dde-48bb-a474-e8672c146683")
 	)
 	(fp_line
 		(start -8.33 4.95)
@@ -292,7 +158,7 @@
 			(type solid)
 		)
 		(layer "F.Fab")
-		(uuid "f6087a1b-f869-4a21-842e-94ce06841217")
+		(uuid "f1e18262-9a24-468c-aae5-f52a54c69c36")
 	)
 	(fp_line
 		(start 8.33 -4.95)
@@ -302,7 +168,7 @@
 			(type solid)
 		)
 		(layer "F.Fab")
-		(uuid "0bf49df9-c38d-4c6c-a851-1818f4502209")
+		(uuid "e829937d-c01b-42ed-a4c5-714720738caf")
 	)
 	(fp_line
 		(start 8.33 4.95)
@@ -312,18 +178,18 @@
 			(type solid)
 		)
 		(layer "F.Fab")
-		(uuid "69d68f45-5769-452c-b181-7ca1cfa86ff0")
+		(uuid "da3d3abb-53f5-49f8-96f2-edcf5edc3c61")
 	)
 	(fp_circle
-		(center -6.5 2)
-		(end -6.4 2)
+		(center -6.4 5.7)
+		(end -6.3 5.7)
 		(stroke
 			(width 0.2)
 			(type solid)
 		)
 		(fill no)
 		(layer "F.Fab")
-		(uuid "5a54b971-0fe1-4c44-b0c2-417b141aa155")
+		(uuid "7cdfa9ea-da6c-4ae8-9827-b9b21bbd8874")
 	)
 	(pad "1A" thru_hole rect
 		(at -6.35 3.81)
@@ -332,7 +198,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "2fdf0096-65c0-417b-8d9b-e680371c68f6")
+		(uuid "35f64e44-4bc0-43f4-abcf-572125e26dc8")
 	)
 	(pad "1B" thru_hole circle
 		(at -6.35 -3.81)
@@ -341,7 +207,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "553009f0-9ba1-47d5-9833-3a2ccb368189")
+		(uuid "0d0135fd-89c5-40e6-b563-33865b006ea8")
 	)
 	(pad "2A" thru_hole circle
 		(at -3.81 3.81)
@@ -350,7 +216,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "7126c39f-d889-4f16-88f4-63f90830a26b")
+		(uuid "ce3b43df-481f-4f18-8634-c509353035fb")
 	)
 	(pad "2B" thru_hole circle
 		(at -3.81 -3.81)
@@ -359,7 +225,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "460a331b-49f1-4787-a459-df4926be4bc8")
+		(uuid "6d1b18c1-34b8-457d-8992-b12ec701fc7d")
 	)
 	(pad "3A" thru_hole circle
 		(at -1.27 3.81)
@@ -368,7 +234,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "d3a2ccef-b626-46bc-980b-313c00496595")
+		(uuid "5888b453-ea26-4bd2-b160-03f49324b6c4")
 	)
 	(pad "3B" thru_hole circle
 		(at -1.27 -3.81)
@@ -377,7 +243,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "a57e4827-9d86-4959-b97f-98a11d7e0b72")
+		(uuid "aecdc3fe-3977-4fd7-851a-b8cfe956a179")
 	)
 	(pad "4A" thru_hole circle
 		(at 1.27 3.81)
@@ -386,7 +252,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "89633061-184e-46dd-aa5c-318f98fa5aa3")
+		(uuid "8efdf9b6-7643-429b-8015-ee15c69f1e59")
 	)
 	(pad "4B" thru_hole circle
 		(at 1.27 -3.81)
@@ -395,7 +261,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "98ee06cd-a6cd-4e06-8b01-aee6bbad5733")
+		(uuid "1d319e79-5e14-4ee2-a2e3-294baacc2185")
 	)
 	(pad "5A" thru_hole circle
 		(at 3.81 3.81)
@@ -404,7 +270,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "d91ad79f-7c54-44ef-a4af-e55b5a3a3e82")
+		(uuid "a675ab25-3d7b-4895-8560-1e83627f63a3")
 	)
 	(pad "5B" thru_hole circle
 		(at 3.81 -3.81)
@@ -413,7 +279,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "196c5c0b-a9b0-41db-9a72-f31c41694885")
+		(uuid "aa34b0d9-b27a-47e2-bddb-0f2db96ad2f7")
 	)
 	(pad "6A" thru_hole circle
 		(at 6.35 3.81)
@@ -422,7 +288,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "cdc41ff5-f5ab-4dac-8c0c-cd4455a9c91a")
+		(uuid "6d1a86c0-ba5f-464a-beae-574fdadb29ff")
 	)
 	(pad "6B" thru_hole circle
 		(at 6.35 -3.81)
@@ -431,18 +297,18 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(solder_mask_margin 0.102)
-		(uuid "60248941-7f47-4672-a86d-ea59dbf8f6f2")
+		(uuid "f2ef4189-372e-4e06-9965-a542e5ea7296")
 	)
 	(embedded_fonts no)
-	(model "${PLUS381_PARTS}/3dmodels/DS01C-254-S-06BE.step"
+	(model "${PLUS381_PARTS}/3dmodels/DS01C-254-S-06BE--3DModel-STEP-1.step"
 		(offset
-			(xyz 3.7 0 0)
+			(xyz -3.7 0 0)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz -90 -0 -90)
+			(xyz -270 180 -90)
 		)
 	)
 )

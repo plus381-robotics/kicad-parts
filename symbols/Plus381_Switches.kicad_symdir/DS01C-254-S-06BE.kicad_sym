@@ -188,6 +188,28 @@
 				(justify bottom)
 			)
 		)
+		(property "MPN" "DS01C-254-S-06BE"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Same Sky"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(symbol "DS01C-254-S-06BE_0_0"
 			(polyline
 				(pts
