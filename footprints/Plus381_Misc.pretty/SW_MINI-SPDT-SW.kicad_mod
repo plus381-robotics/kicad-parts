@@ -1,0 +1,233 @@
+(footprint "SW_MINI-SPDT-SW"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at -3.683 -2.9464 0)
+		(layer "F.SilkS")
+		(uuid "ef047da5-058c-4f8e-9c12-4d57da9f0174")
+		(effects
+			(font
+				(size 0.64 0.64)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SW_MINI-SPDT-SW"
+		(at 0.381 2.9464 0)
+		(layer "F.Fab")
+		(uuid "82dd2b9c-1bba-422e-8379-abd35e4e0440")
+		(effects
+			(font
+				(size 0.64 0.64)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4ff8982f-f145-4d8f-bde6-41c2b4a9150a")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7776baeb-d1a6-47d7-abe1-b407f760ecac")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -5.8 -2)
+		(end -5.8 2)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4d2c829d-01c9-4ada-9031-a47fb093bfde")
+	)
+	(fp_line
+		(start -5.8 2)
+		(end 5.8 2)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "734e26d2-c5ab-4cee-b393-46a376e83c02")
+	)
+	(fp_line
+		(start 5.8 -2)
+		(end -5.8 -2)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "f928a6b0-2b86-4ea9-b512-284e0904bf64")
+	)
+	(fp_line
+		(start 5.8 2)
+		(end 5.8 -2)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "dfe28d7d-ba55-44fa-b7ef-2cac9ca51110")
+	)
+	(fp_circle
+		(center -6.5 0)
+		(end -6.4 0)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "a3220125-54f4-42a1-bd09-83f3d2e65c51")
+	)
+	(fp_line
+		(start -6.05 -2.25)
+		(end -6.05 2.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "706893f7-6e1d-4869-8231-97e2d6983d00")
+	)
+	(fp_line
+		(start -6.05 2.25)
+		(end 6.05 2.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "142985db-7c2b-4664-9bb7-d3ce0dbbd2f2")
+	)
+	(fp_line
+		(start 6.05 -2.25)
+		(end -6.05 -2.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "44b16598-5248-4cff-80e2-e8b52447470f")
+	)
+	(fp_line
+		(start 6.05 2.25)
+		(end 6.05 -2.25)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "92f193be-9572-4a72-bce1-d395a279a791")
+	)
+	(fp_line
+		(start -5.8 -2)
+		(end -5.8 2)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "f5cc37f1-3c70-4913-9af6-14a3e4a2a91a")
+	)
+	(fp_line
+		(start -5.8 2)
+		(end 5.8 2)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "7376b0cd-f6ee-4d60-8e5d-3ec136e52460")
+	)
+	(fp_line
+		(start 5.8 -2)
+		(end -5.8 -2)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "42c91507-4cb6-4a39-b42b-92005ff9bd80")
+	)
+	(fp_line
+		(start 5.8 2)
+		(end 5.8 -2)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "25d4a63e-cc94-4564-bd99-267fc3d61056")
+	)
+	(fp_circle
+		(center -6.5 0)
+		(end -6.4 0)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "5e5da297-252b-4e9f-a831-f8cc903c66ed")
+	)
+	(pad "1" thru_hole rect
+		(at -2.5 0)
+		(size 1.408 1.408)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.102)
+		(uuid "11ec8af7-9de5-4c4c-b417-fc7646ed9404")
+	)
+	(pad "2" thru_hole circle
+		(at 0 0)
+		(size 1.408 1.408)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.102)
+		(uuid "c9bf1f8f-0223-4585-9849-58af1b6fb645")
+	)
+	(pad "3" thru_hole circle
+		(at 2.5 0)
+		(size 1.408 1.408)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.102)
+		(uuid "61aa32b9-f376-4efa-98e6-6cae6e04356e")
+	)
+	(embedded_fonts no)
+	(model "${PLUS381_PARTS}/3dmodels/MINI-SPDT-SW.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
+)
