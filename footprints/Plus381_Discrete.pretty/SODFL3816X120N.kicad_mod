@@ -1,0 +1,240 @@
+(footprint "SODFL3816X120N"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0.72 -2.685 0)
+		(layer "F.SilkS")
+		(uuid "c22b4bd6-7a8e-4890-b64b-5f0292bdc9b1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SODFL3816X120N"
+		(at 6.435 2.685 0)
+		(layer "F.Fab")
+		(uuid "411918f6-e36c-4591-baff-b34b3140ee99")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "dc809365-798c-4edb-8d5a-47c5930698d4")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "87d3b859-4d23-411d-9961-7ef3116394ab")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -1.35 -0.8)
+		(end -1.35 -0.685)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "30a97c6e-62fa-4ce6-8971-791b0a3887f8")
+	)
+	(fp_line
+		(start -1.35 0.8)
+		(end -1.35 0.685)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9216eb06-e3b2-4684-b2ef-cbc2fe8685a9")
+	)
+	(fp_line
+		(start -1.35 0.8)
+		(end 1.35 0.8)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e76c8185-fb61-443f-845d-355e6e1cea34")
+	)
+	(fp_line
+		(start 1.35 -0.8)
+		(end -1.35 -0.8)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2bd8fb0f-054a-46f7-8612-b8a6733939e6")
+	)
+	(fp_line
+		(start 1.35 -0.685)
+		(end 1.35 -0.8)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "273b1742-e1dd-46b5-9490-fe6b09197688")
+	)
+	(fp_line
+		(start 1.35 0.8)
+		(end 1.35 0.685)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "b2ff0832-d025-4fb8-9985-2d840c99f67c")
+	)
+	(fp_circle
+		(center -3.205 0)
+		(end -3.105 0)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "a7a416dc-ef64-47ef-9582-da3e5aa7f603")
+	)
+	(fp_line
+		(start -2.455 -1.05)
+		(end -2.455 1.05)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "a54bbb69-b291-40b1-a7fe-50e1b56a4703")
+	)
+	(fp_line
+		(start -2.455 1.05)
+		(end 2.455 1.05)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "861e0aeb-4f85-4dcf-876e-a12aa1942eee")
+	)
+	(fp_line
+		(start 2.455 -1.05)
+		(end -2.455 -1.05)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "76fe6670-2d6f-440b-8026-268a4dd05875")
+	)
+	(fp_line
+		(start 2.455 1.05)
+		(end 2.455 -1.05)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "801d149d-3d33-4333-bb5c-2ea1464bb87c")
+	)
+	(fp_line
+		(start -1.35 -0.8)
+		(end -1.35 0.8)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "0b4f2812-1372-4706-b8ad-82c850922283")
+	)
+	(fp_line
+		(start -1.35 0.8)
+		(end 1.35 0.8)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "84a8914a-b0eb-42d9-94c5-aabb517a4555")
+	)
+	(fp_line
+		(start 1.35 -0.8)
+		(end -1.35 -0.8)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "5f4dd80c-73ab-4e30-a50d-29ebef286e19")
+	)
+	(fp_line
+		(start 1.35 0.8)
+		(end 1.35 -0.8)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "4e41f095-fbe9-4955-b03c-2889e266b580")
+	)
+	(fp_circle
+		(center -3.205 0)
+		(end -3.105 0)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "848ac9c2-5036-446a-826a-4a7efd9a7018")
+	)
+	(pad "A" smd rect
+		(at 1.72 0)
+		(size 0.97 0.73)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(solder_mask_margin 0.102)
+		(uuid "d6b562aa-20b6-4cbf-b066-692a2d718968")
+	)
+	(pad "C" smd rect
+		(at -1.72 0)
+		(size 0.97 0.73)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(solder_mask_margin 0.102)
+		(uuid "06fa5394-c5ce-4f79-81c1-b2bc16482541")
+	)
+	(embedded_fonts no)
+	(model "${PLUS381_PARTS}/3dmodels/1N4148W.step"
+		(offset
+			(xyz -1.9 -0.3 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
